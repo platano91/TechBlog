@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- You can add more <link> tags here for additional CSS files -->
+</head>
+<body>
+    <header>
+        <!-- Navigation Bar -->
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                {{#if loggedIn}}
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                {{else}}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Signup</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Content -->
+        {{{body}}}
+    </main>
+
+    <footer>
+        <p>&copy; {{year}} Your Blog Name</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="/js/script.js"></script>
+    <!-- You can add more <script> tags here for additional JS files -->
+</body>
+</html>

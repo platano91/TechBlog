@@ -1,0 +1,46 @@
+{{!-- Individual Blog Post View --}}
+
+{{!-- Layout Inheritance --}}
+{{#extend "main"}}
+
+{{#block "content"}}
+
+  {{!-- Blog Post Details --}}
+  <div class="blog-post">
+    <h1>{{post.title}}</h1>
+    <p>Posted by {{post.author}} on {{post.createdAt}}</p>
+    <div class="post-content">
+      {{post.content}}
+    </div>
+  </div>
+
+  {{!-- Comments Section --}}
+  <div class="comments">
+    <h2>Comments</h2>
+    {{#if post.comments}}
+      {{#each post.comments as |comment|}}
+        <div class="comment">
+          <p>{{comment.author}} said: "{{comment.content}}" on {{comment.createdAt}}</p>
+        </div>
+      {{/each}}
+    {{else}}
+      <p>No comments yet.</p>
+    {{/if}}
+  </div>
+
+  {{!-- Comment Form --}}
+  {{#if loggedIn}}
+    <div class="comment-form">
+      <h2>Leave a Comment</h2>
+      <form action="/post/{{post.id}}/comment" method="POST">
+        <textarea name="comment" placeholder="Your comment here" required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+    </div>
+  {{else}}
+    <p><a href="/login">Log in</a> to leave a comment.</p>
+  {{/if}}
+
+{{/block}}
+
+{{/extend}}

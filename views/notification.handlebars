@@ -1,0 +1,31 @@
+{{!-- notification.handlebars --}}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification</title>
+    <!-- Include any stylesheets or head content here -->
+</head>
+<body>
+    <div class="notification-container">
+        {{#if successMessage}}
+            <div class="notification success">
+                <p>{{successMessage}}</p>
+            </div>
+        {{/if}}
+
+        {{#if errorMessage}}
+            <div class="notification error">
+                <p>{{errorMessage}}</p>
+            </div>
+        {{/if}}
+
+        {{#if infoMessage}}
+            <div class="notification info">
+                <p>{{infoMessage}}</p>
+            </div>
+        {{/if}}
+    </div>
+
+    <!-- Include any scripts or additional content here -->
+</body>
+</html>
