@@ -1,10 +1,12 @@
 const express = require('express');
 const sequelize = require('./config/config');
 const session = require('express-session');
+const db = require('./models');
+const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const db = require('./models');
+
 const PORT = process.env.PORT || 3001;
 
 // Middlewares for parsing JSON and urlencoded form data
@@ -13,6 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Static directory
 app.use(express.static('public'));
+
+// Set up Handlebars
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 // Session middleware
 const sess = {
