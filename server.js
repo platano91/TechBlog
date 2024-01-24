@@ -1,7 +1,10 @@
 const express = require('express');
 const sequelize = require('./config/config');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
+const db = require('./models');
 const PORT = process.env.PORT || 3001;
 
 // Middlewares for parsing JSON and urlencoded form data
@@ -13,16 +16,16 @@ app.use(express.static('public'));
 
 // Session middleware
 const sess = {
-    secret: process.env.SESSION_SECRET, // Make sure to add SESSION_SECRET in your .env file
+    secret: process.env.SESSION_SECRET, 
     cookie: {},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
       db: sequelize
     })
-  };
+};
   
-  app.use(session(sess));
+app.use(session(sess));
 
 // Routes
 // Note: You will need to require your route files at the top of this script
