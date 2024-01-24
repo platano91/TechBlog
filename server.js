@@ -34,7 +34,7 @@ const sess = {
 
 app.use(session(sess));
 
-// Routes (uncomment these when your routes are ready)
+// Routes
 // const apiRoutes = require('./routes/apiRoutes');
 // const htmlRoutes = require('./routes/htmlRoutes');
 // app.use('/api', apiRoutes);
