@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
+const bcrypt = require('bcrypt');
 
 class User extends Model {}
 
@@ -36,6 +37,11 @@ User.init({
   freezeTableName: true,
   underscored: true,
   modelName: 'user',
+});
+
+// Hook to hash password before saving a user
+User.beforeCreate(async (user) => {
+  user.password = await bcrypt.hash(user.password, 10);
 });
 
 module.exports = User;
