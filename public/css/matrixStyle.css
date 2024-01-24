@@ -1,0 +1,88 @@
+/* Matrix Theme Basic Styling */
+body {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+}
+
+a {
+    color: #0f0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header and Navigation Styles */
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+nav a {
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+
+/* Blog Post Styles */
+.post {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #0f0;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-size: 1.1em;
+}
+
+/* Comment and Form Styles */
+.comment {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-left: 3px solid #0f0;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    background-color: #000;
+    border: 1px solid #0f0;
+    color: #0f0;
+    padding: 5px;
+    width: 100%;
+}
+
+input[type="submit"],
+button {
+    background-color: #0f0;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #0a0;
+}
