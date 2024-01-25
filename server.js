@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static directory
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
 // Extend helpers with a custom 'extend' helper
 const combinedHelpers = {
