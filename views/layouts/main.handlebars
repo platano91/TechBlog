@@ -16,7 +16,7 @@
                 <li><a href="/">Home</a></li>
                 {{#if loggedIn}}
                     <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a id="logout" href="/logout">Logout</a></li>
                 {{else}}
                     <li><a href="/login">Login</a></li>
                     <li><a href="/signup">Signup</a></li>
@@ -35,7 +35,7 @@
     </footer>
 
     <!-- JavaScript Files -->
-    <script src="/js/script.js"></script>
+    {{!-- <script src="/js/script.js"></script> --}}
     <!-- You can add more <script> tags here for additional JS files -->
     <script src="/js/logout.js"></script>
     <script src="/js/sessionTimeout.js"></script>
