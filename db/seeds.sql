@@ -1,5 +1,5 @@
 -- Use your database
-USE your_database_name;
+USE techblog_db;
 
 -- Reset the data
 TRUNCATE TABLE comments;
