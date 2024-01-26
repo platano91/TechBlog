@@ -3,21 +3,30 @@ const bcrypt = require('bcrypt');
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// User registration route
-router.post('/register', async (req, res) => {
+// Render signup page
+router.get('/signup', (req, res) => {
+    res.render('signup'); // Render the signup form
+});
+
+// Handle user registration form submission
+router.post('/signup', async (req, res) => {
     try {
+        // Attempt to create a new user with the provided data
         const newUser = await User.create({
             ...req.body, // Spread operator to get all user data (username, password, etc.)
         });
 
+        // Save the user's information in the session
         req.session.save(() => {
             req.session.userId = newUser.id;
             req.session.username = newUser.username;
             req.session.loggedIn = true;
 
+            // Respond with the new user data
             res.status(200).json(newUser);
         });
     } catch (error) {
+        // If an error occurs, respond with the error
         res.status(500).json(error);
     }
 });

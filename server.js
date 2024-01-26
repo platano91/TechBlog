@@ -54,8 +54,12 @@ app.use(session(sess));
 // Routes
 const apiRoutes = require('./controllers/api/index');
 const htmlRoutes = require('./controllers/homeRoutes');
+const userRoutes = require('./controllers/api/userRoutes'); 
+
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
+app.use('/', userRoutes);
+
 
 // Error handling middleware (to be implemented)
 // app.use((err, req, res, next) => {

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             // Send a POST request to the server
             try {
-                const response = await fetch('/api/users/register', {
+                const response = await fetch('/api/users/signup', {
                     method: 'POST',
                     body: JSON.stringify(userData),
                     headers: { 'Content-Type': 'application/json' },
