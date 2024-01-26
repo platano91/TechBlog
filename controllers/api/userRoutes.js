@@ -3,11 +3,6 @@ const bcrypt = require('bcrypt');
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Render signup page
-router.get('/signup', (req, res) => {
-    res.render('signup'); // Render the signup form
-});
-
 // Handle user registration form submission
 router.post('/signup', async (req, res) => {
     try {

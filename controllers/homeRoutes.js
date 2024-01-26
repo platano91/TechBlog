@@ -28,4 +28,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/dashboard', (req, res) => {
+    // Check if the user is logged in
+    if (req.session.loggedIn) {
+        res.render('dashboard'); // Render the dashboard view
+    } else {
+        res.redirect('/login'); // Redirect to login page if not logged in
+    }
+});
+
+// Render the login page
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+// Render signup page
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
 module.exports = router;

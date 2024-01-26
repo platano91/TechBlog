@@ -1,72 +1,53 @@
+require('dotenv').config();
+
 const express = require('express');
-const sequelize = require('./config/config');
 const session = require('express-session');
-const db = require('./models');
 const exphbs = require('express-handlebars');
-const helpers = require('./utils/helpers'); // Import helpers
+const sequelize = require('./config/config');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const customHelpers = require('./utils/helpers');
+const path = require('path');
+const routes = require('./controllers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middlewares for parsing JSON and urlencoded form data
+// Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Static directory
-app.use(express.static('./public'));
+// Serve static assets from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Extend helpers with a custom 'extend' helper
-const combinedHelpers = {
-  ...helpers,
-  extend: function (name, context) {
-    // Placeholder for custom 'extend' logic
-    return context.fn(this);
-  },
-  block: function (name, options) {
-    // Placeholder for custom 'block' logic
-    // Implement what 'block' should do based on your requirements
-    return null;
-  },
-  // ... other custom helpers you might have
-};
-
-// Set up Handlebars with helpers
-const hbs = exphbs.create({ helpers: combinedHelpers });
+// Handlebars setup with custom helpers
+const hbs = exphbs.create({ helpers: customHelpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// Session middleware
+// Session middleware setup
 const sess = {
-    secret: process.env.SESSION_SECRET, 
+    secret: process.env.SESSION_SECRET,
     cookie: {
-        // Consider setting cookie security options here
+        // Add secure: true if HTTPS/SSL, maxAge for cookie expiration, etc.
     },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
-      db: sequelize
+        db: sequelize
     })
 };
 
 app.use(session(sess));
 
-// Routes
-const apiRoutes = require('./controllers/api/index');
-const htmlRoutes = require('./controllers/homeRoutes');
-const userRoutes = require('./controllers/api/userRoutes'); 
-
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
-app.use('/', userRoutes);
-
+// Route handlers
+app.use('/', routes);
 
 // Error handling middleware (to be implemented)
 // app.use((err, req, res, next) => {
 //   // Error handling logic
 // });
 
-// Syncing our sequelize models and then starting our Express app
+// Sync Sequelize models and start the server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 });
