@@ -40,7 +40,7 @@ const sess = {
 app.use(session(sess));
 
 // Route handlers
-app.use('/', routes);
+app.use(routes);
 
 // Error handling middleware (to be implemented)
 // app.use((err, req, res, next) => {

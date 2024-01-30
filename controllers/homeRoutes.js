@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 router.get('/dashboard', (req, res) => {
     // Check if the user is logged in
     if (req.session.loggedIn) {
-        res.render('dashboard'); // Render the dashboard view
+        res.render('dashboard');
     } else {
         res.redirect('/login'); // Redirect to login page if not logged in
     }
@@ -39,6 +39,10 @@ router.get('/dashboard', (req, res) => {
 
 // Render the login page
 router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/homepage');
+        return;
+    }
     res.render('login');
 });
 
