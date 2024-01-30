@@ -15,8 +15,7 @@
         <!-- Display user information -->
         <div class="user-info">
             <p><strong>Username:</strong> {{user.username}}</p>
-            <p><strong>Email:</strong> {{user.email}}</p>
-            <!-- Add more user details here if needed -->
+            {{!-- <p><strong>Email:</strong> {{user.email}}</p> --}}
         </div>
 
         <!-- Edit user information form -->
@@ -26,12 +25,10 @@
                 <input type="text" id="username" name="username" value="{{user.username}}" required>
             </div>
 
-            <div class="form-group">
+            {{!-- <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="{{user.email}}" required>
-            </div>
-
-            <!-- Include other fields as necessary -->
+            </div> --}}
 
             <button type="submit">Update Profile</button>
         </form>

@@ -8,14 +8,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
 
         // Select the input elements and get their values
-        const emailInput = document.querySelector('#email-login').value.trim();
-        const passwordInput = document.querySelector('#password-login').value.trim();
+        const usernameInput = document.querySelector('#username').value.trim();
+        const passwordInput = document.querySelector('#password').value.trim();
 
-        if (emailInput && passwordInput) {
+        if (usernameInput && passwordInput) {
             // Send a POST request to the server with the email and password
             const response = await fetch('/api/users/login', {
                 method: 'POST',
-                body: JSON.stringify({ email: emailInput, password: passwordInput }),
+                body: JSON.stringify({ username: usernameInput, password: passwordInput }),
                 headers: { 'Content-Type': 'application/json' },
             });
 
