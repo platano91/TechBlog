@@ -30,15 +30,16 @@ User.init({
     validate: {
       len: [8] // Passwords must be at least 8 characters long
     }
-  }
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
 }, {
   sequelize,
-  timestamps: true,
-  freezeTableName: true,
-  underscored: true,
   modelName: 'user',
 });
-
 // Hook to hash password before saving a user
 User.beforeCreate(async (user) => {
   user.password = await bcrypt.hash(user.password, 10);

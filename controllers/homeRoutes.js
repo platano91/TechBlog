@@ -21,25 +21,46 @@ router.get('/', async (req, res) => {
         // Pass serialized data and session flag into template
         res.render('homepage', { 
             posts, 
-            logged_in: req.session.logged_in 
+            loggedIn: req.session.loggedIn 
         });
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-router.get('/dashboard', (req, res) => {
-    // Check if the user is logged in
-    if (req.session.loggedIn) {
-        res.render('dashboard');
-    } else {
-        res.redirect('/login'); // Redirect to login page if not logged in
+// Render the dashboard page
+router.get('/dashboard', withAuth, async (req, res) => {
+    try {
+        // Fetch the user's posts if logged in
+        const postData = await Post.findAll({
+            where: {
+                // Assuming you have a userId column to match the session's user id
+                userId: req.session.userId 
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+        });
+
+        // Serialize data so the template can read it
+        const posts = postData.map(post => post.get({ plain: true }));
+
+        res.render('dashboard', {
+            posts,
+            loggedIn: req.session.loggedIn
+        });
+    } catch (err) {
+        console.log(err);
+        res.redirect('/login');
     }
 });
 
 // Render the login page
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }

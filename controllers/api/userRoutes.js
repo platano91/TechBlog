@@ -59,11 +59,12 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// User logout route
-router.post('/logout', (req, res) => {
+// User logout route (handles both GET and POST)
+router.all('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            res.status(204).end();
+            // Respond with a success message or redirect to another page
+            res.status(204).end(); // 204 No Content (or other appropriate status code)
         });
     } else {
         res.status(404).end();

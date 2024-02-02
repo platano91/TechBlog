@@ -4,33 +4,31 @@ const sequelize = require('../config/config');
 class Post extends Model {}
 
 Post.init({
-  // Define Post attributes
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   title: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   content: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: false,
   },
-  userId: {
+  user_id: {
     type: DataTypes.INTEGER,
-    references: {
-      model: 'user',
-      key: 'id'
-    }
-  }
+    allowNull: false,
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
 }, {
   sequelize,
-  timestamps: true,
-  freezeTableName: true,
-  underscored: true,
   modelName: 'post',
 });
 
