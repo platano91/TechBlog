@@ -18,18 +18,19 @@ Post.init({
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  created_at: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW,
-  },
+  // created_at: {
+  //   type: DataTypes.DATE,
+  //   allowNull: false,
+  //   defaultValue: DataTypes.NOW,
+  // },
 }, {
   sequelize,
   modelName: 'post',
+  tableName: 'posts'
 });
 
 module.exports = Post;

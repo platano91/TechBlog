@@ -1,9 +1,9 @@
 {{!-- homepage.handlebars --}}
-{{!-- Layout Inheritance --}}
+{{!-- Extend the main layout --}}
 {{#extend "main"}}
 
 {{!-- Content Insertion in {{{body}}} of Main Layout --}}
-{{#block "content"}}
+{{#content "body"}}
 
 <header>
     <h1>Welcome to the Tech Blog</h1>
@@ -18,7 +18,7 @@
                     <p>{{this.summary}}</p>
                     <div class="post-info">
                         <span>By {{this.author}}</span>
-                        <span>On {{dateFormat this.createdAt}}</span>
+                        {{!-- <span>On {{dateFormat this.createdAt}}</span> --}}
                     </div>
                     <a href="/posts/{{this.id}}">Read more</a>
                 </article>
@@ -29,6 +29,6 @@
     {{/if}}
 </main>
 
-{{/block}}
+{{/content}}
 
 {{/extend}}

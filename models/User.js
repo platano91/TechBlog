@@ -31,14 +31,15 @@ User.init({
       len: [8] // Passwords must be at least 8 characters long
     }
   },
-  created_at: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW,
-  },
+  // created_at: {
+  //   type: DataTypes.DATE,
+  //   allowNull: false,
+  //   defaultValue: DataTypes.NOW,
+  // },
 }, {
   sequelize,
   modelName: 'user',
+  tableName: 'users'
 });
 // Hook to hash password before saving a user
 User.beforeCreate(async (user) => {

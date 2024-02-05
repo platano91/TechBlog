@@ -1,23 +1,26 @@
-// Define all your custom helper functions
 const helpers = {
   extend: function (name, context) {
-    // Placeholder for custom 'extend' logic
+    // This function allows for the extension of templates in some templating engines.
     return context.fn(this);
   },
-  block: function (name, options) {
-    // Placeholder for custom 'block' logic
-    return null; // Implement what 'block' should do
+
+  block: function (name) {
+    // This function is meant to define a block that can be overridden.
+    // Since the implementation is not provided, it's a placeholder.
+    // You should implement the logic based on your templating engine's needs.
   },
-  content: function () {
-    // Placeholder for your 'content' helper
-    return 'Some content';
+
+  content: function (name, options) {
+    // This function is designed to handle content blocks.
+    return options.fn(this);
   },
+
   formatDate: function (date) {
-    // Format the date as a readable string
+    // This function formats a JavaScript Date object into a readable string.
+    // Ensure 'date' is a valid Date object to prevent runtime errors.
+    if (!(date instanceof Date)) throw new TypeError("Invalid date");
     return date.toLocaleDateString();
   },
-  // ... any other custom helpers ...
 };
 
-// Directly export the helpers object
 module.exports = helpers;

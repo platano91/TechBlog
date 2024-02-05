@@ -1,3 +1,4 @@
+// managePost.js
 document.addEventListener('DOMContentLoaded', (event) => {
     if (event) {
         console.info('DOM loaded');
@@ -17,7 +18,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 // Add any other fields you have in your form
             };
 
-            const postId = document.getElementById('post-id').value;
+            const postIdElement = document.getElementById('post-id');
+            const postId = postIdElement ? postIdElement.value : null;
             const url = postId ? `/api/posts/${postId}` : '/api/posts';
             const method = postId ? 'PUT' : 'POST';
 
