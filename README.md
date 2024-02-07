@@ -16,7 +16,7 @@ a CMS-style blog site similar to a Wordpress site, where developers can publish 
 Project will run via the heroku link contained below. To use it on your own local machine, it will require node, npm, express and MySQL.
 
 ## Usage 
-[deployed-link]https://mysterious-ocean-86671-c24fdb46ce59.herokuapp.com/
+[deployed link](https://mysterious-ocean-86671-c24fdb46ce59.herokuapp.com/)
 or
 'npm start' to run on local machine
 
